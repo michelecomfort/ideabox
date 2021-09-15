@@ -9,7 +9,7 @@ body {
   display: flex;
   align-content: stretch;
   flex-direction: column;
-  width: 30%;
+  width: 68em;
   height: auto;
 }
 
@@ -23,17 +23,22 @@ margin-top: 10%;
   color: #E9E9F3;
   font-weight: bold;
   height: 5%;
+  margin: 0 10px;
 }
 
 h1 {
   color: #E9E9F3;
   font-weight: bold;
-  padding-left: 5%;
+  margin: 0;
+  padding-left: 12px;
+  padding-top: 10px;
+
 }
 
 h2 {
   color: #BFBFDD;
   font-size: 16px;
+  padding-left: 12px;
 }
 
 main {
@@ -45,6 +50,17 @@ main {
   flex-direction: column;
 }
 
+.input-title {
+  border: 2px solid #5356A4;
+  border-radius: 3px;
+  height: 10%
+}
+
+.input-body {
+  border: 2px solid #5356A4;
+  border-radius: 3px;
+  height: 30%
+}
 .input-boxes {
   background-color: #A9AAD2;
   display: flex;
@@ -52,8 +68,8 @@ main {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 60%
-  padding: 5%;
+  height: 25em;
+  /* padding: 5%; */
 }
 
 input {
@@ -61,7 +77,10 @@ input {
 }
 
 
-label {
+.label {
+  color: #1F1F3D;
+  font-size: 22px;
+  font-weight: bold;
   margin-right: 27%;
   margin-bottom: 0.5%
 }
@@ -89,23 +108,29 @@ label {
   border: 2px solid;
   display: flex;
   flex-direction: row;
-  flex-grow: 2;
   flex-wrap: wrap;
-  height: 45%;
-  width: 27%;
+  flex-grow: 2;
+  height: 55%;
+  width: 13%;
   justify-content: space-around;
+}
+
+.card-title {
+  color: #1F1F3D;
+  font-size: 22px;
+  text-align: left;
 }
 
 .comment-image {
   background-color: #5356A4;
   display: flex;
+  height: fit-content;
+  width: fit-content;
+  justify-content: space-around;
   flex-direction: row;
-  justify-content: flex-start;
-  margin: auto;
-  margin-right: 84%;
 }
 
 img {
-  height: 60%;
-  width: 60%;
+  height: 12%;
+  width: 12%;
 }
