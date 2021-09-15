@@ -53,7 +53,7 @@ main {
 .input-title {
   border: 2px solid #5356A4;
   border-radius: 3px;
-  height: 10%
+  height: 10%;
 }
 
 .input-body {
@@ -82,7 +82,7 @@ input {
   font-size: 22px;
   font-weight: bold;
   margin-right: 27%;
-  margin-bottom: 0.5%
+  margin-bottom: 0.5%;
 }
 
 .save-button {
@@ -93,6 +93,24 @@ input {
   margin: 3%;
   padding: 0.5%;
   width: 30%;
+}
+
+.search-box {
+  display: flex;
+}
+
+.search-icon {
+  height: 39px;
+  width: 39px;
+  background-color: #353667;
+  padding: 1%;
+}
+
+.search-input {
+  border: 2px solid #5356A4;
+  border-radius: 2px;
+  height: 40px;
+  width: 315px;
 }
 
 .idea-cards {
@@ -112,7 +130,6 @@ input {
   flex-grow: 2;
   height: 55%;
   width: 13%;
-  justify-content: space-around;
 }
 
 .card-title {
