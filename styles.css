@@ -1,0 +1,111 @@
+body {
+  display: flex;
+  font-family: 'Open Sans', Light;
+
+}
+
+.sidebar {
+  background-color: #1F1F3D;
+  display: flex;
+  align-content: stretch;
+  flex-direction: column;
+  width: 30%;
+  height: auto;
+}
+
+.line {
+border-bottom: 2px solid #5356A4;
+margin-top: 10%;
+}
+
+.starred-ideas {
+  background-color: #5356A4;
+  color: #E9E9F3;
+  font-weight: bold;
+  height: 5%;
+}
+
+h1 {
+  color: #E9E9F3;
+  font-weight: bold;
+  padding-left: 5%;
+}
+
+h2 {
+  color: #BFBFDD;
+  font-size: 16px;
+}
+
+main {
+  display: flex;
+}
+
+.column2 {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-boxes {
+  background-color: #A9AAD2;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 60%
+  padding: 5%;
+}
+
+input {
+  width: 30%;
+}
+
+
+label {
+  margin-right: 27%;
+  margin-bottom: 0.5%
+}
+
+.save-button {
+  background-color: #1F1F3D;
+  border: 1px solid #5356A4;
+  color: #E9E9F3;
+  font-size: 20px;
+  margin: 3%;
+  padding: 0.5%;
+  width: 30%;
+}
+
+.idea-cards {
+  background-color: #EAEAF4;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2%;
+}
+
+.idea-boxes {
+  background-color: white;
+  border: 2px solid;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 2;
+  flex-wrap: wrap;
+  height: 45%;
+  width: 27%;
+  justify-content: space-around;
+}
+
+.comment-image {
+  background-color: #5356A4;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: auto;
+  margin-right: 84%;
+}
+
+img {
+  height: 60%;
+  width: 60%;
+}
