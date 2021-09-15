@@ -1,5 +1,7 @@
 body {
+  display: flex;
   font-family: 'Open Sans', Light;
+
 }
 
 .sidebar {
@@ -11,12 +13,27 @@ body {
   height: auto;
 }
 
+.line {
+border-bottom: 2px solid #5356A4;
+margin-top: 10%;
+}
+
+.starred-ideas {
+  background-color: #5356A4;
+  color: #E9E9F3;
+  font-weight: bold;
+  height: 5%;
+}
+
 h1 {
   color: #E9E9F3;
+  font-weight: bold;
+  padding-left: 5%;
 }
 
 h2 {
   color: #BFBFDD;
+  font-size: 16px;
 }
 
 main {
@@ -31,8 +48,11 @@ main {
 .input-boxes {
   background-color: #A9AAD2;
   display: flex;
+  width: 100%;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
+  height: 60%
   padding: 5%;
 }
 
@@ -40,8 +60,10 @@ input {
   width: 30%;
 }
 
+
 label {
   margin-right: 27%;
+  margin-bottom: 0.5%
 }
 
 .save-button {
@@ -81,5 +103,9 @@ label {
   justify-content: flex-start;
   margin: auto;
   margin-right: 84%;
+}
 
+img {
+  height: 60%;
+  width: 60%;
 }
