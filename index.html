@@ -5,23 +5,24 @@
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
 </head>
-
 <body>
   <main>
     <aside class="sidebar">
       <h1>IdeaBox</h1>
+      <div class="line"></div>
       <h2>Filter Starred Ideas</h2>
-      <button>Show Starred Ideas</button>
+      <button class="starred-ideas">Show Starred Ideas</button>
+      <div class="line"></div>
     </aside>
     <section class="column2">
-      <section class= 'input-boxes'>
-      <label>Title</label>
-      <input></input>
-      <label>Body</label>
-      <input></input>
-      <button class= 'save-button'>Save</button>
-      <input></input>
-    </section>
+      <section class='input-boxes'>
+        <label>Title</label>
+        <input class='input-title'></input>
+        <label>Body</label>
+        <input class='input-body'></input>
+        <button class='save-button'>Save</button>
+        <input></input>
+      </section>
       <section class="idea-cards">
         <section class="idea-boxes">
           <h1>Idea title</h1>
@@ -75,20 +76,19 @@
         </section>
         <section class="idea-boxes">
           <div>
-          <!-- <img src= assets/star-active.svg alt="star">
+            <!-- <img src= assets/star-active.svg alt="star">
           <img src= assets/delete-active.svg alt="delete"> -->
-        </div>
+          </div>
           <h1>Idea title</h1>
           <p>Idea body. Don't ever play yourself. Every chance I get,
             I water the plants, Lion! Cloth talk.</p>
-          <section class= "comment-image">
-            <img src= assets/comment.svg alt='Add comment button'>
+          <section class="comment-image">
+            <img src=assets/comment.svg alt='Add comment button'>
             <h1>Comment</h1>
+          </section>
         </section>
       </section>
-    </section>
   </main>
   <script type="text/javascript" src="main.js"></script>
 </body>
-
 </html>
