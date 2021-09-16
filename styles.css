@@ -33,6 +33,7 @@ width: 100%
   width: 90%;
   white-space: nowrap;
   overflow: hidden;
+  margin-bottom: 10%;
 }
 
 
@@ -93,7 +94,7 @@ main {
   justify-content: center;
   flex-direction: column;
   height: 25em;
-  /* padding: 5%; */
+  border: 1px solid #EAEAFA;
 }
 
 .label {
@@ -110,7 +111,7 @@ main {
   color: #E9E9F3;
   font-size: 20px;
   margin: 3%;
-  padding: 0.5%;
+  padding: 1.5%;
   width: 40%;
 }
 
@@ -135,12 +136,14 @@ main {
   border-radius: 2px;
   width: 40%;
   height: 56px;
+  font-size: 110%;
 }
 
 .idea-cards {
   background-color: #EAEAF4;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  padding: 1.5%;
 }
 
 .idea-boxes {
@@ -148,24 +151,30 @@ main {
   border: 2px solid;
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
-  margin-left: 10px;
+  width:60%;
+  margin: 3% auto;
 }
 
 .card-title {
   color: #1F1F3D;
-  font-size: 22px;
+  font-size: 110%;
   text-align: left;
+  font-weight: 700;
+  padding: 8% 8% 3% 8%;
+  margin-bottom: 0;
 }
 
 .star-border {
   background-color: #1F1F3D;
+  display: flex;
+  justify-content: space-between;
 }
 .comment-image {
   background-color: #5356A4;
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-top: 2%;
 }
 
 img {
@@ -176,4 +185,24 @@ img {
 .search-icon {
   background-color: #353667;
   padding: 2%;
+}
+
+p {
+  padding: 0 8% 3% 8%;
+  font-weight: lighter;
+  margin: 0;
+  text-align: left;
+  padding-bottom: 5%;
+}
+
+/* .active-star {
+  align-self: left;
+}
+
+.delete {
+  margin-left: 60%;
+} */
+
+.hidden {
+  display: none;
 }
