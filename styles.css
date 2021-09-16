@@ -1,6 +1,11 @@
+html {
+  height: 100vh;
+}
+
 body {
   display: flex;
   font-family: 'Open Sans', Light;
+  height: 100vh;
 
 }
 
@@ -24,6 +29,7 @@ width: 100%
   font-weight: bold;
   height: 5%;
   margin: 0 10px;
+  cursor: pointer;
 
 }
 
@@ -71,6 +77,7 @@ main {
 .column2 {
   display: flex;
   flex-direction: column;
+  height:100vh;
 }
 
 .input-title {
@@ -113,6 +120,7 @@ main {
   margin: 3%;
   padding: 1.5%;
   width: 40%;
+  cursor: pointer;
 }
 
 /* * {
@@ -180,11 +188,13 @@ main {
 img {
   height: 25px;
   width: 25px;
+  cursor: pointer;
 }
 
 .search-icon {
   background-color: #353667;
   padding: 2%;
+  cursor: pointer;
 }
 
 p {
@@ -205,4 +215,11 @@ p {
 
 .hidden {
   display: none;
+}
+
+.save-button:disabled {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: auto;
 }

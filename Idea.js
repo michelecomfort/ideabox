@@ -5,8 +5,8 @@ class Idea {
     this.id = Date.now();
     this.isStarred = false;
   }
-  saveToStorage(newIdea) {
-    var ideaToStore = newIdea;
+  saveToStorage(name) {
+    var ideaToStore = name;
     var stringifyIdea = JSON.stringify(ideaToStore);
     localStorage.setItem('storedIdea', stringifyIdea);
   }
