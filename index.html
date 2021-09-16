@@ -12,18 +12,18 @@
       <h1>IdeaBox</h1>
       <div class="line"></div>
       <h2>Filter Starred Ideas</h2>
-      <button class="starred-ideas">Show Starred Ideas</button>
+      <button id= "ideas-starred" class="starred-ideas">Show Starred Ideas</button>
       <div class="line"></div>
     </aside>
     <section class="column2">
       <section class='input-boxes'>
         <label class="label">Title</label>
-        <input class='input-title'></input>
+        <input id = 'title-input' class='input-title'></input>
         <label class="label">Body</label>
-        <textarea class='input-body'></textarea>
+        <textarea id = 'body-input' class='input-body'></textarea>
         <button class='save-button'>Save</button>
         <div class = 'search-box'>
-          <img class = 'search-icon' src='assets/search.svg'>
+          <img id = 'icon-search' class = 'search-icon' src='assets/search.svg'>
           <input class ='search-input' placeholder='Search ideas'></input>
         </div>
       </section>
@@ -75,7 +75,7 @@
                 I water the plants, Lion! Cloth talk.</p>
               </div>
               <footer class="comment-image">
-                <img src=assets/comment.svg alt='Add comment button'>
+                <img class = "comment-button" src=assets/comment.svg alt='Add comment button'>
                 <h1>Comment</h1>
               </footer>
             </section>
@@ -98,10 +98,10 @@
         </section>
         <section class="idea-boxes">
           <header class="star-border">
-            <img class = 'active-star' src= assets/star-active.svg alt="star-active">
-            <img class = 'delete-active hidden' src= assets/delete-active.svg alt="delete-active">
-            <img class = 'star hidden' src= assets/star.svg alt="star">
-            <img class = 'delete' src= assets/delete.svg alt="delete">
+            <img id="active-star" class = 'active-star' src= assets/star-active.svg alt="star-active">
+            <img id="active-delete" class = 'delete-active hidden' src= assets/delete-active.svg alt="delete-active">
+            <img id = "star-button" class = 'star hidden' src= assets/star.svg alt="star">
+            <img id = "delete-button" class = 'delete' src= assets/delete.svg alt="delete">
           </header>
           <div class='idea-content'>
             <h1 class="card-title">Idea title</h1>
@@ -115,6 +115,7 @@
         </section>
       </section>
   </main>
+  <script type="text/javascript" src="idea.js"></script>
   <script type="text/javascript" src="main.js"></script>
 </body>
 </html>
