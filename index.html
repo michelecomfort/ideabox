@@ -18,84 +18,16 @@
     <section class="column2">
       <section class='input-boxes'>
         <label class="label">Title</label>
-        <input id = 'title-input' class='input-title'></input>
+        <textarea id = 'title-input' class='input-title'></textarea>
         <label class="label">Body</label>
-        <textarea id = 'body-input' class='input-body'></textarea>
-        <button class='save-button'>Save</button>
+        <textarea id = 'body-input' class='input-body' type = 'text'></textarea>
+        <button id = 'save-button' class='save-button' type = 'text'>Save</button>
         <div class = 'search-box'>
           <img id = 'icon-search' class = 'search-icon' src='assets/search.svg'>
           <input class ='search-input' placeholder='Search ideas'></input>
         </div>
       </section>
-      <section class="idea-cards">
-        <section class="idea-boxes">
-              <header class="star-border">
-                <img class = 'active-star' src= assets/star-active.svg alt="star-active">
-                <img class = 'delete-active hidden' src= assets/delete-active.svg alt="delete-active">
-                <img class = 'star hidden' src= assets/star.svg alt="star">
-                <img class = 'delete' src= assets/delete.svg alt="delete">
-              </header>
-              <div class='idea-content'>
-                <h1 class="card-title">Idea title</h1>
-                <p>Idea body. Don't ever play yourself. Every chance I get,
-                I water the plants, Lion! Cloth talk.</p>
-              </div>
-              <footer class="comment-image">
-                <img src=assets/comment.svg alt='Add comment button'>
-                <h1>Comment</h1>
-              </footer>
-            </section>
-        <section class="idea-boxes">
-              <header class="star-border">
-                <img class = 'active-star' src= assets/star-active.svg alt="star-active">
-                <img class = 'delete-active hidden' src= assets/delete-active.svg alt="delete-active">
-                <img class = 'star hidden' src= assets/star.svg alt="star">
-                <img class = 'delete' src= assets/delete.svg alt="delete">
-              </header>
-              <div class='idea-content'>
-                <h1 class="card-title">Idea title</h1>
-                <p>Idea body. Don't ever play yourself. Every chance I get,
-                I water the plants, Lion! Cloth talk.</p>
-              </div>
-              <footer class="comment-image">
-                <img src=assets/comment.svg alt='Add comment button'>
-                <h1>Comment</h1>
-              </footer>
-            </section>
-        <section class="idea-boxes">
-              <header class="star-border">
-                <img class = 'active-star' src= assets/star-active.svg alt="star-active">
-                <img class = 'delete-active hidden' src= assets/delete-active.svg alt="delete-active">
-                <img class = 'star hidden' src= assets/star.svg alt="star">
-                <img class = 'delete' src= assets/delete.svg alt="delete">
-              </header>
-              <div class='idea-content'>
-                <h1 class="card-title">Idea title</h1>
-                <p>Idea body. Don't ever play yourself. Every chance I get,
-                I water the plants, Lion! Cloth talk.</p>
-              </div>
-              <footer class="comment-image">
-                <img class = "comment-button" src=assets/comment.svg alt='Add comment button'>
-                <h1>Comment</h1>
-              </footer>
-            </section>
-        <section class="idea-boxes">
-          <header class="star-border">
-            <img class = 'active-star' src= assets/star-active.svg alt="star-active">
-            <img class = 'delete-active hidden' src= assets/delete-active.svg alt="delete-active">
-            <img class = 'star hidden' src= assets/star.svg alt="star">
-            <img class = 'delete' src= assets/delete.svg alt="delete">
-          </header>
-          <div class='idea-content'>
-            <h1 class="card-title">Idea title</h1>
-            <p>Idea body. Don't ever play yourself. Every chance I get,
-            I water the plants, Lion! Cloth talk.</p>
-          </div>
-          <footer class="comment-image">
-            <img src=assets/comment.svg alt='Add comment button'>
-            <h1>Comment</h1>
-          </footer>
-        </section>
+      <section class="idea-cards" id='card-grid'>
         <section class="idea-boxes">
           <header class="star-border">
             <img id="active-star" class = 'active-star' src= assets/star-active.svg alt="star-active">
