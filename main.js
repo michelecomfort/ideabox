@@ -17,28 +17,56 @@ var bodyInput = document.getElementById('body-input');
 var cardGrid = document.getElementById('card-grid');
 var inputFields = document.querySelectorAll('textarea');
 var starBorder = document.getElementById('star-border')
+var ideaBoxes = document.querySelector(".idea-boxes")
 
 //Event Listeners
 titleInput.addEventListener('keydown', buttonDisable);
 bodyInput.addEventListener('keydown', buttonDisable);
 saveButton.addEventListener('click', saveNewIdea);
 // deleteButton.addEventListener('click', deleteIdeaCard)
-starBorder.addEventListener('click', function(event) {
-  if (event.target.className === 'delete') {
-    deleteIdeaCard()
-  }
+deleteButton.addEventListener('click', function(event){
+  deleteIdeaCard()
 })
-//Event Handlers
 
 function deleteIdeaCard(event) {
- for (var i = 0; i <loggedIdeas.length; i++) {
-   if (loggedIdeas[i].id === event.target.id) {
-     loggedIdeas.splice(i, 1)
-     newIdea.deleteFromStorage()
-   }
- }
+  var deleteThisCard = event.target.closest('.star-border');
+  if(event.target.classList.contains('delete')) {
+    event.target.closest('.star-border').remove();
+    for(var i = 0; i < loggedIdeas.length; i++) {
+      if (parseInt(deleteButton.id) === parseInt(loggedIdeas[i].id)) {
+        loggedIdeas.splice(i, 1);
+      }
+    }
+  }
 }
 
+//   if (event.target.className === 'delete') {
+//
+//     deleteIdeaCard()
+//   }
+// })
+
+
+
+
+
+
+
+
+//Event Handlers
+
+function deleteIdeaCard() {
+  var targetId = parseInt(event.target.parentNode.id)
+
+  for (var i = 0; i < loggedIdeas.length; i++) {
+    if (loggedIdeas[i].id === targetId) {
+      loggedIdeas.splice(i, 1)
+      // event.target.parentNode.remove()
+      newIdea.deleteFromStorage()
+    }
+  }
+  // }
+}
 
 function createNewIdea() {
   var userTitle = titleInput.value;
@@ -77,7 +105,7 @@ function createIdeaCard() {
   var parsedIdea = JSON.parse(retrievedIdea);
   cardGrid.innerHTML += `
     <section class="idea-boxes" id=${parsedIdea[parsedIdea.length - 1].id}>
-          <header class="star-border">
+          <header class="star-border" >
           <img id="active-star" class = 'active-star' src= assets/star-active.svg alt="star-active">
           <img id="active-delete" class = 'delete-active hidden' src= assets/delete-active.svg alt="delete-active">
           <img id = "star-button" class = 'star hidden' src= assets/star.svg alt="star">
