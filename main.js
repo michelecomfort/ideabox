@@ -24,33 +24,19 @@ titleInput.addEventListener('keydown', buttonDisable);
 bodyInput.addEventListener('keydown', buttonDisable);
 saveButton.addEventListener('click', saveNewIdea);
 // deleteButton.addEventListener('click', deleteIdeaCard)
-deleteButton.addEventListener('click', function(event){
-  deleteIdeaCard()
-})
 
-function deleteIdeaCard(event) {
-  var deleteThisCard = event.target.closest('.star-border');
+cardGrid.addEventListener('click', function(event){
+
   if(event.target.classList.contains('delete')) {
-    event.target.closest('.star-border').remove();
+  var deleteThisCard = event.target.closest('.idea-boxes')
+  deleteThisCard.remove()
     for(var i = 0; i < loggedIdeas.length; i++) {
-      if (parseInt(deleteButton.id) === parseInt(loggedIdeas[i].id)) {
+      if (loggedIdeas[i].id === parseInt(deleteThisCard.id)) {
         loggedIdeas.splice(i, 1);
       }
     }
   }
-}
-
-//   if (event.target.className === 'delete') {
-//
-//     deleteIdeaCard()
-//   }
-// })
-
-
-
-
-
-
+})
 
 
 //Event Handlers
