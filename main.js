@@ -6,8 +6,8 @@ var newIdea;
 
 var saveButton = document.getElementById('save-button');
 var deleteButton = document.getElementById('delete-button');
-var starButton = document.getElementById('star-button');
-var activeStarButton = document.getElementById('active-star');
+var starButton = document.querySelector('.star');
+var activeStarButton = document.querySelector('.active-star');
 var activeDeleteButton = document.getElementById('active-delete');
 var showStarredButton = document.getElementById('ideas-starred');
 var commentButton = document.querySelector('.comment-button');
@@ -23,11 +23,12 @@ var ideaBoxes = document.querySelector(".idea-boxes")
 titleInput.addEventListener('keydown', buttonDisable);
 bodyInput.addEventListener('keydown', buttonDisable);
 saveButton.addEventListener('click', saveNewIdea);
-// deleteButton.addEventListener('click', deleteIdeaCard)
+cardGrid.addEventListener('click', littleButtons);
 
-cardGrid.addEventListener('click', function(event){
 
-  if(event.target.classList.contains('delete')) {
+
+function littleButtons(event) {
+  if (event.target.classList.contains('delete')) {
   var deleteThisCard = event.target.closest('.idea-boxes')
   deleteThisCard.remove()
     for(var i = 0; i < loggedIdeas.length; i++) {
@@ -35,24 +36,22 @@ cardGrid.addEventListener('click', function(event){
         loggedIdeas.splice(i, 1);
       }
     }
-  }
-})
+  } else if (event.target.classList.contains('star')) {
+      var targetStar = event.target.closest('.star')
+        for (var i = 0; i < loggedIdeas.length; i++) {
+          if (loggedIdeas[i].id === parseInt(targetStar.id))
+          loggedIdeas[i].isStarred = true;
+          hide(targetStar);
+          if (loggedIdeas[i].isStarred === true) {
+            show(activeStarButton);
+          }
+          console.log(targetStar);
 
+        }
+      }
+  }
 
 //Event Handlers
-
-function deleteIdeaCard() {
-  var targetId = parseInt(event.target.parentNode.id)
-
-  for (var i = 0; i < loggedIdeas.length; i++) {
-    if (loggedIdeas[i].id === targetId) {
-      loggedIdeas.splice(i, 1)
-      // event.target.parentNode.remove()
-      newIdea.deleteFromStorage()
-    }
-  }
-  // }
-}
 
 function createNewIdea() {
   var userTitle = titleInput.value;
@@ -86,15 +85,19 @@ function hide(element) {
   element.classList.add('hidden');
 }
 
+// function hideAndUnhide(show, hide) {
+//   show.classList.remove('hidden');
+//   hide.classList.add('hidden');
+// }
+
 function createIdeaCard() {
   var retrievedIdea = localStorage.getItem('storedIdea');
   var parsedIdea = JSON.parse(retrievedIdea);
   cardGrid.innerHTML += `
     <section class="idea-boxes" id=${parsedIdea[parsedIdea.length - 1].id}>
           <header class="star-border" >
-          <img id="active-star" class = 'active-star' src= assets/star-active.svg alt="star-active">
-          <img id="active-delete" class = 'delete-active hidden' src= assets/delete-active.svg alt="delete-active">
-          <img id = "star-button" class = 'star hidden' src= assets/star.svg alt="star">
+          <img id="active-star" class = 'active-star hidden' src= assets/star-active.svg alt="star-active">
+          <img id = "star-button" class = 'star' src= assets/star.svg alt="star">
           <img id = "delete-button" class = 'delete' src= assets/delete.svg alt="delete">
           </header>
           <div class='idea-content'>
