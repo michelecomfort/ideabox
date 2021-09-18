@@ -8,10 +8,18 @@ class Idea {
   saveToStorage(idea) {
     var ideaToStore = idea;
     var stringifyIdea = JSON.stringify(ideaToStore);
-    localStorage.setItem('storedIdea', stringifyIdea);
+    localStorage.setItem("storedIdea", stringifyIdea);
   }
   deleteFromStorage() {
-    localStorage.removeItem('storedIdea');
+    var retrievedIdea = localStorage.getItem("storedIdea");
+    var parsedIdea = JSON.parse(retrievedIdea);
+    for (var i = 0; i < parsedIdea.length; i++) {
+      if (parsedIdea[i].id === this.id) {
+        parsedIdea.splice(i, 1);
+      }
+    }
+    this.saveToStorage(parsedIdea)
+
   }
   updateIdea() {
     this.isStarred = true;

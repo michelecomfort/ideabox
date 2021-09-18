@@ -108,7 +108,7 @@ function onPageLoad() {
 }
 
 function createIdeaCard() {
-  var retrievedIdea = localStorage.getItem('storedIdea');
+  var retrievedIdea = localStorage.getItem("storedIdea");
   var parsedIdea = JSON.parse(retrievedIdea);
   cardGrid.innerHTML += `
     <section class="idea-boxes" id=${parsedIdea[parsedIdea.length - 1].id}>
