@@ -25,7 +25,7 @@ border-bottom: 2px solid #5356A4;
 width: 100%
 }
 
-.starred-ideas {
+.starred-ideas, .all-button {
   background-color: #5356A4;
   color: #E9E9F3;
   font-weight: bold;
@@ -35,7 +35,7 @@ width: 100%
 
 }
 
-.sidebar > .starred-ideas {
+.sidebar > .starred-ideas, .all-button {
   font-size: 18px;
   margin: 0 auto;
   width: 90%;
