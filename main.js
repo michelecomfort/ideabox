@@ -100,6 +100,7 @@ function showFavorites() {
     }
   }
   renderCards(favorites)
+  toggleElement(showStarredButton)
 }
 
 function renderCards (list) {
@@ -132,7 +133,11 @@ function onPageLoad() {
   }
 }
 
-
+function createIdeaCard() {
+  var retrievedIdea = localStorage.getItem("storedIdea");
+  var parsedIdea = JSON.parse(retrievedIdea);
+  renderCards(parsedIdea)
+}
 function createIdeaCard() {
   var retrievedIdea = localStorage.getItem("storedIdea");
   var parsedIdea = JSON.parse(retrievedIdea);
