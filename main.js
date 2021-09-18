@@ -25,8 +25,6 @@ bodyInput.addEventListener('keydown', buttonDisable);
 saveButton.addEventListener('click', saveNewIdea);
 cardGrid.addEventListener('click', littleButtons);
 
-
-
 function littleButtons(event) {
   if (event.target.classList.contains('delete')) {
   var deleteThisCard = event.target.closest('.idea-boxes')
@@ -37,21 +35,19 @@ function littleButtons(event) {
       }
     }
   } else if (event.target.classList.contains('star')) {
-      var targetStar = event.target.closest('.star')
+      var targetBox = event.target.closest('.idea-boxes')
+      var activeStar = targetBox.querySelector('#active-star')
+      var targetStar = targetBox.querySelector('#star-button')
         for (var i = 0; i < loggedIdeas.length; i++) {
-          if (loggedIdeas[i].id === parseInt(targetStar.id))
-          loggedIdeas[i].isStarred = true;
-          hide(targetStar);
-          if (loggedIdeas[i].isStarred === true) {
-            show(activeStarButton);
-          }
-          console.log(targetStar);
-
+          if (loggedIdeas[i].id === parseInt(targetBox.id)) {
+              loggedIdeas[i].isStarred = !loggedIdeas[i].isStarred;
+            toggleElement(targetStar);
+            toggleElement(activeStar);
         }
       }
   }
+}
 
-//Event Handlers
 
 function createNewIdea() {
   var userTitle = titleInput.value;
@@ -77,18 +73,11 @@ function buttonDisable() {
   }
 }
 
-function show(element) {
-  element.classList.remove('hidden');
+
+function toggleElement(element) {
+  element.classList.toggle('hidden')
 }
 
-function hide(element) {
-  element.classList.add('hidden');
-}
-
-// function hideAndUnhide(show, hide) {
-//   show.classList.remove('hidden');
-//   hide.classList.add('hidden');
-// }
 
 function createIdeaCard() {
   var retrievedIdea = localStorage.getItem('storedIdea');
@@ -96,7 +85,7 @@ function createIdeaCard() {
   cardGrid.innerHTML += `
     <section class="idea-boxes" id=${parsedIdea[parsedIdea.length - 1].id}>
           <header class="star-border" >
-          <img id="active-star" class = 'active-star hidden' src= assets/star-active.svg alt="star-active">
+          <img id="active-star" class = 'active-star star hidden' src= assets/star-active.svg alt="star-active">
           <img id = "star-button" class = 'star' src= assets/star.svg alt="star">
           <img id = "delete-button" class = 'delete' src= assets/delete.svg alt="delete">
           </header>
