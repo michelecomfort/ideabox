@@ -13,6 +13,7 @@ var starButton = document.querySelector('.star');
 var activeStarButton = document.querySelector('.active-star');
 var activeDeleteButton = document.getElementById('active-delete');
 var showStarredButton = document.getElementById('ideas-starred');
+var showAllButton = document.getElementById('show-all');
 var commentButton = document.querySelector('.comment-button');
 var searchButton = document.getElementById('icon-search');
 var titleInput = document.getElementById('title-input');
