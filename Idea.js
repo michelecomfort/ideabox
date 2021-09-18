@@ -5,11 +5,13 @@ class Idea {
     this.id = Date.now();
     this.isStarred = false;
   }
-  saveToStorage(idea) {
-    var ideaToStore = idea;
+
+  saveToStorage(savedIdeas) {
+    var ideaToStore = savedIdeas;
     var stringifyIdea = JSON.stringify(ideaToStore);
     localStorage.setItem("storedIdea", stringifyIdea);
   }
+
   deleteFromStorage() {
     var retrievedIdea = localStorage.getItem("storedIdea");
     var parsedIdea = JSON.parse(retrievedIdea);
@@ -19,9 +21,10 @@ class Idea {
       }
     }
     this.saveToStorage(parsedIdea)
-
   }
+
   updateIdea() {
     this.isStarred = true;
   }
+
 }
