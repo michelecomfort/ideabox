@@ -29,10 +29,12 @@ cardGrid.addEventListener('click', littleButtons);
 function littleButtons(event) {
   if (event.target.classList.contains('delete')) {
   var deleteThisCard = event.target.closest('.idea-boxes')
+  console.log(event.target.id)
   deleteThisCard.remove()
     for(var i = 0; i < loggedIdeas.length; i++) {
       if (loggedIdeas[i].id === parseInt(deleteThisCard.id)) {
         loggedIdeas.splice(i, 1);
+       newIdea.deleteFromStorage(deleteThisCard);
       }
     }
   } else if (event.target.classList.contains('star')) {
