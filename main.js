@@ -34,8 +34,8 @@ function littleButtons(event) {
     deleteThisCard.remove()
     for(var i = 0; i < loggedIdeas.length; i++) {
       if (loggedIdeas[i].id === parseInt(deleteThisCard.id)) {
-        loggedIdeas.splice(i, 1);
         newIdea.deleteFromStorage();
+        loggedIdeas.splice(i, 1);
         }
       }
     } else if (event.target.classList.contains('star')) {
