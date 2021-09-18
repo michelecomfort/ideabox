@@ -1,5 +1,7 @@
 var loggedIdeas = [];
-var newIdea;
+var newIdea = new Idea();
+var retrievedIdea = localStorage.getItem('storedIdea');
+var parsedIdea = JSON.parse(retrievedIdea);
 
 
 // Query Selectors
@@ -28,16 +30,15 @@ cardGrid.addEventListener('click', littleButtons);
 
 function littleButtons(event) {
   if (event.target.classList.contains('delete')) {
-  var deleteThisCard = event.target.closest('.idea-boxes')
-  console.log(event.target.id)
-  deleteThisCard.remove()
+    var deleteThisCard = event.target.closest('.idea-boxes')
+    deleteThisCard.remove()
     for(var i = 0; i < loggedIdeas.length; i++) {
       if (loggedIdeas[i].id === parseInt(deleteThisCard.id)) {
         loggedIdeas.splice(i, 1);
-       newIdea.deleteFromStorage(deleteThisCard);
+        newIdea.deleteFromStorage();
+        }
       }
-    }
-  } else if (event.target.classList.contains('star')) {
+    } else if (event.target.classList.contains('star')) {
       var targetBox = event.target.closest('.idea-boxes')
       var activeStar = targetBox.querySelector('#active-star')
       var targetStar = targetBox.querySelector('#star-button')
@@ -50,7 +51,6 @@ function littleButtons(event) {
       }
   }
 }
-
 
 function createNewIdea() {
   var userTitle = titleInput.value;
@@ -83,8 +83,7 @@ function toggleElement(element) {
 
 
 function onPageLoad() {
-  var retrievedIdea = localStorage.getItem('storedIdea');
-  var parsedIdea = JSON.parse(retrievedIdea);
+  if (parsedIdea) {
   for (var i = 0; i < parsedIdea.length; i++) {
     loggedIdeas.push(parsedIdea[i]);
     cardGrid.innerHTML += `
@@ -105,7 +104,7 @@ function onPageLoad() {
           </section>
           `
   }
-
+}
 }
 
 function createIdeaCard() {
