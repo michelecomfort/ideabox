@@ -107,6 +107,7 @@ function showFavorites() {
 }
 
 function showAllCards() {
+  cardGrid.innerHTML = '';
   renderCards(loggedIdeas);
   toggleElement(showAllButton);
   toggleElement(showStarredButton);
@@ -118,7 +119,7 @@ function renderCards (list) {
     if(list === parsedIdea) {
     loggedIdeas.push(list[i]);
   }
-  
+
     cardGrid.innerHTML += `
       <section class="idea-boxes" id=${list[i].id}>
             <header class="star-border" >
