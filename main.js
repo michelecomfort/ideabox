@@ -103,6 +103,7 @@ function showFavorites() {
 }
 
 function renderCards (list) {
+  cardGrid.innerHTML = ''
   for (var i = 0; i < list.length; i++) {
     loggedIdeas.push(list[i]);
     cardGrid.innerHTML += `
