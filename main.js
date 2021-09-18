@@ -20,6 +20,7 @@ var starBorder = document.getElementById('star-border')
 var ideaBoxes = document.querySelector(".idea-boxes")
 
 //Event Listeners
+window.addEventListener('load', onPageLoad);
 titleInput.addEventListener('keydown', buttonDisable);
 bodyInput.addEventListener('keydown', buttonDisable);
 saveButton.addEventListener('click', saveNewIdea);
@@ -78,6 +79,32 @@ function toggleElement(element) {
   element.classList.toggle('hidden')
 }
 
+
+function onPageLoad() {
+  var retrievedIdea = localStorage.getItem('storedIdea');
+  var parsedIdea = JSON.parse(retrievedIdea);
+  for (var i = 0; i < parsedIdea.length; i++) {
+    loggedIdeas.push(parsedIdea[i]);
+    cardGrid.innerHTML += `
+      <section class="idea-boxes" id=${parsedIdea[i].id}>
+            <header class="star-border" >
+            <img id="active-star" class = 'active-star star hidden' src= assets/star-active.svg alt="star-active">
+            <img id = "star-button" class = 'star' src= assets/star.svg alt="star">
+            <img id = "delete-button" class = 'delete' src= assets/delete.svg alt="delete">
+            </header>
+            <div class='idea-content'>
+              <h1 class="card-title">${parsedIdea[i].title}</h1>
+              <p>${parsedIdea[i].body}</p>
+            </div>
+            <footer class="comment-image">
+              <img src=assets/comment.svg alt='Add comment button'>
+              <h1>Comment</h1>
+            </footer>
+          </section>
+          `
+  }
+
+}
 
 function createIdeaCard() {
   var retrievedIdea = localStorage.getItem('storedIdea');
