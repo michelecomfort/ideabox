@@ -29,7 +29,8 @@ titleInput.addEventListener('keydown', buttonDisable);
 bodyInput.addEventListener('keydown', buttonDisable);
 saveButton.addEventListener('click', saveNewIdea);
 cardGrid.addEventListener('click', littleButtons);
-showStarredButton.addEventListener('click', showFavorites)
+showStarredButton.addEventListener('click', showFavorites);
+showAllButton.addEventListener('click', showAllCards);
 
 function littleButtons(event) {
   if (event.target.classList.contains('delete')) {
@@ -102,12 +103,22 @@ function showFavorites() {
   }
   renderCards(favorites)
   toggleElement(showStarredButton)
+  toggleElement(showAllButton)
+}
+
+function showAllCards() {
+  renderCards(loggedIdeas);
+  toggleElement(showAllButton);
+  toggleElement(showStarredButton);
 }
 
 function renderCards (list) {
   cardGrid.innerHTML = ''
   for (var i = 0; i < list.length; i++) {
+    if(list === parsedIdea) {
     loggedIdeas.push(list[i]);
+  }
+  
     cardGrid.innerHTML += `
       <section class="idea-boxes" id=${list[i].id}>
             <header class="star-border" >
