@@ -3,6 +3,7 @@ var newIdea = new Idea();
 var retrievedIdea = localStorage.getItem('storedIdea');
 var storedIdeas = JSON.parse(retrievedIdea);
 var favorites = []
+var star;
 
 
 // Query Selectors
@@ -123,8 +124,7 @@ function renderCards (list) {
     cardGrid.innerHTML += `
       <section class="idea-boxes" id=${list[i].id}>
           <header class="star-border" >
-            <img id="active-star" class = 'active-star star hidden' src= assets/star-active.svg alt="star-active">
-            <img id = "star-button" class = 'star' src= assets/star.svg alt="star">
+            <img id = "star-button" class = 'star' src=${star}>
             <img id = "delete-button" class = 'delete' src= assets/delete.svg alt="delete">
           </header>
           <div class='idea-content'>
@@ -141,8 +141,26 @@ function renderCards (list) {
 }
 
 function onPageLoad() {
-  if(storedIdeas) {
-    renderCards(storedIdeas)
+  showSavedCards();
+  // for (var i = 0; i < storedIdeas.length; i++) {
+  //   if (storedIdeas[i].isStarred === true) {
+  //   starButton.innerHTML += `src=assets/star-active.svg`;
+  //   renderCards();
+  // }
+  // }
+}
+
+function showSavedCards() {
+  if (storedIdeas) {
+    renderCards(storedIdeas);
+  }
+}
+
+function changeStarImages() {
+  if (!storedIdeas.isStarred) {
+    star = 'assets/star.svg';
+  } else {
+    star = 'assets/star-active.svg';
   }
 }
 
@@ -151,6 +169,7 @@ function createIdeaCard() {
   var storedIdeas = JSON.parse(retrievedIdea);
   renderCards(storedIdeas)
 }
+
 function createIdeaCard() {
   var retrievedIdea = localStorage.getItem("storedIdea");
   var storedIdeas = JSON.parse(retrievedIdea);
