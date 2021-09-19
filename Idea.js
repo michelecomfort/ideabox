@@ -14,13 +14,13 @@ class Idea {
 
   deleteFromStorage() {
     var retrievedIdea = localStorage.getItem("storedIdea");
-    var parsedIdea = JSON.parse(retrievedIdea);
-    for (var i = 0; i < parsedIdea.length; i++) {
-      if (parsedIdea[i].id === this.id) {
-        parsedIdea.splice(i, 1);
+    var storedIdeas = JSON.parse(retrievedIdea);
+    for (var i = 0; i < storedIdeas.length; i++) {
+      if (storedIdeas[i].id === this.id) {
+        storedIdeas.splice(i, 1);
       }
     }
-    this.saveToStorage(parsedIdea)
+    this.saveToStorage(storedIdeas)
   }
 
   updateIdea() {

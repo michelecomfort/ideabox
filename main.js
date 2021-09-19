@@ -1,7 +1,7 @@
 var loggedIdeas = [];
 var newIdea = new Idea();
 var retrievedIdea = localStorage.getItem('storedIdea');
-var parsedIdea = JSON.parse(retrievedIdea);
+var storedIdeas = JSON.parse(retrievedIdea);
 var favorites = []
 
 
@@ -98,7 +98,9 @@ function toggleElement(element) {
 function showFavorites() {
   for (var i = 0; i < loggedIdeas.length; i++) {
     if (loggedIdeas[i].isStarred === true) {
-      favorites.push(loggedIdeas[i])
+      if (!favorites.includes(loggedIdeas[i])) {
+        favorites.push(loggedIdeas[i])
+      }
     }
   }
   renderCards(favorites)
@@ -115,54 +117,53 @@ function showAllCards() {
 function renderCards (list) {
   cardGrid.innerHTML = ''
   for (var i = 0; i < list.length; i++) {
-    if(list === parsedIdea) {
+    if(list === storedIdeas) {
     loggedIdeas.push(list[i]);
   }
-  
     cardGrid.innerHTML += `
       <section class="idea-boxes" id=${list[i].id}>
-            <header class="star-border" >
+          <header class="star-border" >
             <img id="active-star" class = 'active-star star hidden' src= assets/star-active.svg alt="star-active">
             <img id = "star-button" class = 'star' src= assets/star.svg alt="star">
             <img id = "delete-button" class = 'delete' src= assets/delete.svg alt="delete">
-            </header>
-            <div class='idea-content'>
+          </header>
+          <div class='idea-content'>
               <h1 class="card-title">${list[i].title}</h1>
               <p>${list[i].body}</p>
-            </div>
-            <footer class="comment-image">
+          </div>
+          <footer class="comment-image">
               <img src=assets/comment.svg alt='Add comment button'>
               <h1>Comment</h1>
-            </footer>
-          </section>
+          </footer>
+        </section>
           `
   }
 }
 
 function onPageLoad() {
-  if(parsedIdea) {
-    renderCards(parsedIdea)
+  if(storedIdeas) {
+    renderCards(storedIdeas)
   }
 }
 
 function createIdeaCard() {
   var retrievedIdea = localStorage.getItem("storedIdea");
-  var parsedIdea = JSON.parse(retrievedIdea);
-  renderCards(parsedIdea)
+  var storedIdeas = JSON.parse(retrievedIdea);
+  renderCards(storedIdeas)
 }
 function createIdeaCard() {
   var retrievedIdea = localStorage.getItem("storedIdea");
-  var parsedIdea = JSON.parse(retrievedIdea);
+  var storedIdeas = JSON.parse(retrievedIdea);
   cardGrid.innerHTML += `
-    <section class="idea-boxes" id=${parsedIdea[parsedIdea.length - 1].id}>
+    <section class="idea-boxes" id=${storedIdeas[storedIdeas.length - 1].id}>
           <header class="star-border" >
           <img id="active-star" class = 'active-star star hidden' src= assets/star-active.svg alt="star-active">
           <img id = "star-button" class = 'star' src= assets/star.svg alt="star">
           <img id = "delete-button" class = 'delete' src= assets/delete.svg alt="delete">
           </header>
           <div class='idea-content'>
-            <h1 class="card-title">${parsedIdea[parsedIdea.length - 1].title}</h1>
-            <p>${parsedIdea[parsedIdea.length - 1].body}</p>
+            <h1 class="card-title">${storedIdeas[storedIdeas.length - 1].title}</h1>
+            <p>${storedIdeas[storedIdeas.length - 1].body}</p>
           </div>
           <footer class="comment-image">
             <img src=assets/comment.svg alt='Add comment button'>
