@@ -15,7 +15,7 @@ var activeDeleteButton = document.getElementById('active-delete');
 var showStarredButton = document.getElementById('ideas-starred');
 var showAllButton = document.getElementById('show-all');
 var commentButton = document.querySelector('.comment-button');
-var searchButton = document.getElementById('icon-search');
+var searchButtonInput = document.getElementById('input-search');
 var titleInput = document.getElementById('title-input');
 var bodyInput = document.getElementById('body-input');
 var cardGrid = document.getElementById('card-grid');
@@ -31,6 +31,7 @@ saveButton.addEventListener('click', saveNewIdea);
 cardGrid.addEventListener('click', littleButtons);
 showStarredButton.addEventListener('click', showFavorites);
 showAllButton.addEventListener('click', showAllCards);
+searchButtonInput.addEventListener('keyup', filterMyIdeas);
 
 function littleButtons(event) {
   if (event.target.classList.contains('delete')) {
@@ -61,6 +62,7 @@ function redStar(event) {
           loggedIdeas[i].isStarred = !loggedIdeas[i].isStarred;
         toggleElement(targetStar);
         toggleElement(activeStar);
+        event.preventDefault();
         newIdea.saveToStorage(loggedIdeas)
     }
   }
@@ -178,4 +180,18 @@ function saveNewIdea() {
   createNewIdea();
   createIdeaCard();
   buttonDisable();
+}
+
+
+function filterMyIdeas() {
+  var searchCards = searchButtonInput.value.toLowerCase();
+  cardGrid.innerHTML = '';
+  var matchedIdea = [];
+  for (var i = 0; i < loggedIdeas.length; i++) {
+    if (loggedIdeas[i].title.toLowerCase().includes(searchCards) || loggedIdeas[i].body.toLowerCase().includes(searchCards)) {
+      matchedIdea.push(loggedIdeas[i]);
+    }
+  }
+
+  renderCards(matchedIdea);
 }
