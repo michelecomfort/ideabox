@@ -1,4 +1,5 @@
 # Ideabox Group Project
+
 Create, display, record and archive idea cards.
 
 ## Installation Instructions
@@ -11,9 +12,16 @@ GitHub repository <a href="https://github.com/michelecomfort/ideabox">link here.
 - `open index.html` to open webpage.
 
 ## Description
+
 Every developer has more ideas than time. As David Allen likes to say “the human brain is for creating ideas, not remembering them.”
 
 Do you have a really great idea but you have difficulty keeping track of it in  your brain?! Well IdeaBox is the app that will help you get your best ideas out of your head and onto idea cards that you can reference at any time.
+
+### Languages Used
+
+- Javascript
+- CSS
+- HTML
 
 ## How it works
 
