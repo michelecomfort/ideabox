@@ -49,9 +49,9 @@ function deleteCard(event) {
   deleteThisCard.remove()
   for(var i = 0; i < loggedIdeas.length; i++) {
     if (loggedIdeas[i].id === parseInt(deleteThisCard.id)) {
-      console.log(parentId)
       newIdea.deleteFromStorage(parentId);
       loggedIdeas.splice(i, 1);
+      deleteFavorites();
       }
     }
   }
@@ -71,6 +71,12 @@ function redStar(event) {
             favorites.push(loggedIdeas[i]);
         }
         newIdea.saveToStorage(loggedIdeas)
+  }
+}
+
+function deleteFavorites() {
+  for (var i = 0; i < favorites.length; i++) {
+    favorites.splice(i, 1);
   }
 }
 
