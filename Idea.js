@@ -24,7 +24,13 @@ class Idea {
   }
 
   updateIdea() {
-    this.isStarred = true;
-  }
-
+    var retrievedIdea = localStorage.getItem("storedIdea");
+    var storedIdeas = JSON.parse(retrievedIdea);
+    for (var i = 0; i < storedIdeas.length; i++) {
+      if (storedIdeas[i].id === this.id) {
+        storedIdeas[i].isStarred =!storedIdeas[i].isStarred;
+      }
+    }
+    this.saveToStorage(storedIdeas)
+}
 }
