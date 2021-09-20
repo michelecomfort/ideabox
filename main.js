@@ -1,7 +1,7 @@
 var loggedIdeas = [];
 var newIdea = new Idea();
-var retrievedIdea = localStorage.getItem('storedIdea');
-var storedIdeas = JSON.parse(retrievedIdea);
+// var retrievedIdea = localStorage.getItem('storedIdea');
+// var storedIdeas = JSON.parse(retrievedIdea);
 var favorites = []
 // var star;
 
@@ -24,7 +24,7 @@ var inputFields = document.querySelectorAll('textarea');
 var starBorder = document.getElementById('star-border')
 var ideaBoxes = document.querySelector(".idea-boxes")
 
-//Event Listeners
+//Event loggedIdeaseners
 window.addEventListener('load', onPageLoad);
 titleInput.addEventListener('keydown', buttonDisable);
 bodyInput.addEventListener('keydown', buttonDisable);
@@ -67,12 +67,12 @@ function redStar(event) {
           toggleElement(targetStar);
           toggleElement(activeStar);
         }
-        if (loggedIdeas[i].isStarred === true && !favorites.includes(loggedIdeas[i])) {
-            favorites.push(loggedIdeas[i]);
-            newIdea.updateIdea();
+        if (loggedIdeas[i].isStarred === true && !loggedIdeas.includes(loggedIdeas[i])) {
+            // favorites.push(loggedIdeas[i]);
+            loggedIdeas[i].updateIdea();
         }
-        newIdea.saveToStorage(loggedIdeas)
   }
+  newIdea.saveToStorage(loggedIdeas)
 }
 
 function deleteFromFavoritesArray() {
@@ -120,13 +120,11 @@ function toggleElement(element) {
 
 function showFavorites() {
   for (var i = 0; i < loggedIdeas.length; i++) {
-    if (loggedIdeas[i].isStarred === true) {
-      if (!favorites.includes(loggedIdeas[i])) {
-        favorites.push(loggedIdeas[i])
-      }
+    if (loggedIdeas[i].isStarred === true && !loggedIdeas.includes(loggedIdeas[i])) {
+      renderCards()
     }
   }
-  renderFavorites()
+  // renderFavorites()
   toggleElement(showStarredButton)
   toggleElement(showAllButton)
 }
@@ -137,31 +135,36 @@ function showAllCards() {
   toggleElement(showStarredButton);
 }
 
-function renderCards (list) {
+function renderCards (loggedIdeas) {
   cardGrid.innerHTML = ''
   var star;
-  if (!storedIdeas.isStarred) {
-    star = 'assets/star.svg';
-  } else {
-    star = 'assets/star-active.svg';
-  }
-  for (var i = 0; i < list.length; i++) {
-    if(list === storedIdeas) {
-    loggedIdeas.push(list[i]);
-  }
-  //   if (list[i].isStarred) {
-  //   favorites.push(list[i]);
+  // if (!loggedIdeas[i].isStarred) {
+  //   star = 'assets/star.svg';
+  // } else {
+  //   star = 'assets/star-active.svg';
+  // }
+  for (var i = 0; i < loggedIdeas.length; i++) {
+    if (!loggedIdeas[i].isStarred) {
+      star = 'assets/star.svg';
+    } else {
+      star = 'assets/star-active.svg';
+    }
+  //   if(loggedIdeas === storedIdeas) {
+  //   loggedIdeas.push(loggedIdeas[i]);
+  // }
+  //   if (loggedIdeas[i].isStarred) {
+  //   favorites.push(loggedIdeas[i]);
   // }
     cardGrid.innerHTML += `
-      <section class="idea-boxes" id=${list[i].id}>
+      <section class="idea-boxes" id=${loggedIdeas[i].id}>
           <header class="star-border" >
           <img id="active-star" class = 'active-star star hidden' src= assets/star-active.svg alt="star-active">
             <img id = "star-button" class = 'star' src=${star} alt="star">
             <img id = "delete-button" class = 'delete' src= assets/delete.svg alt="delete">
           </header>
           <div class='idea-content'>
-              <h1 class="card-title">${list[i].title}</h1>
-              <p>${list[i].body}</p>
+              <h1 class="card-title">${loggedIdeas[i].title}</h1>
+              <p>${loggedIdeas[i].body}</p>
           </div>
           <footer class="comment-image">
               <img src=assets/comment.svg alt='Add comment button'>
@@ -169,8 +172,8 @@ function renderCards (list) {
           </footer>
         </section>
           `
+        }
   }
-}
 
 // function renderFavorites() {
 //   cardGrid.innerHTML = ''
@@ -196,11 +199,18 @@ function renderCards (list) {
 // }
 
 function onPageLoad() {
+
   // changeStarImages();
   showSavedCards();
 }
 
 function showSavedCards() {
+  var retrievedIdea = localStorage.getItem('storedIdea');
+  var storedIdeas = JSON.parse(retrievedIdea);
+  // for (var i = 0; i < storedIdeas.length; i++){
+  //   var
+  // }
+  loggedIdeas = storedIdeas
   if (storedIdeas) {
     renderCards(storedIdeas);
   }
