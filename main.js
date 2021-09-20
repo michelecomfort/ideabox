@@ -49,9 +49,9 @@ function deleteCard(event) {
   deleteThisCard.remove()
   for(var i = 0; i < loggedIdeas.length; i++) {
     if (loggedIdeas[i].id === parseInt(deleteThisCard.id)) {
-      console.log(parentId)
       newIdea.deleteFromStorage(parentId);
       loggedIdeas.splice(i, 1);
+      deleteFromFavoritesArray();
       }
     }
   }
@@ -69,8 +69,23 @@ function redStar(event) {
         }
         if (loggedIdeas[i].isStarred === true && !favorites.includes(loggedIdeas[i])) {
             favorites.push(loggedIdeas[i]);
+            newIdea.updateIdea();
         }
         newIdea.saveToStorage(loggedIdeas)
+  }
+}
+
+function deleteFromFavoritesArray() {
+  for (var i = 0; i < favorites.length; i++) {
+    favorites.splice(i, 1);
+  }
+}
+
+function unfavoriteCard() {
+  for (var i = 0; i < favorites.length; i++) {
+    if (favorites[i].isStarred === true)
+    favorites.splice(i, 1);
+
   }
 }
 
@@ -124,15 +139,24 @@ function showAllCards() {
 
 function renderCards (list) {
   cardGrid.innerHTML = ''
+  var star;
+  if (!storedIdeas.isStarred) {
+    star = 'assets/star.svg';
+  } else {
+    star = 'assets/star-active.svg';
+  }
   for (var i = 0; i < list.length; i++) {
     if(list === storedIdeas) {
     loggedIdeas.push(list[i]);
   }
+  //   if (list[i].isStarred) {
+  //   favorites.push(list[i]);
+  // }
     cardGrid.innerHTML += `
       <section class="idea-boxes" id=${list[i].id}>
           <header class="star-border" >
           <img id="active-star" class = 'active-star star hidden' src= assets/star-active.svg alt="star-active">
-            <img id = "star-button" class = 'star' src=assets/star.svg alt="star">
+            <img id = "star-button" class = 'star' src=${star} alt="star">
             <img id = "delete-button" class = 'delete' src= assets/delete.svg alt="delete">
           </header>
           <div class='idea-content'>
@@ -148,30 +172,31 @@ function renderCards (list) {
   }
 }
 
-function renderFavorites() {
-  cardGrid.innerHTML = ''
-  for (var i = 0; i < favorites.length; i++) {
-
-    cardGrid.innerHTML += `
-      <section class="idea-boxes" id=${favorites[i].id}>
-          <header class="star-border" >
-          <img id="active-star" class = 'active-star star' src= assets/star-active.svg alt="star-active">
-            <img id = "delete-button" class = 'delete' src= assets/delete.svg alt="delete">
-          </header>
-          <div class='idea-content'>
-              <h1 class="card-title">${favorites[i].title}</h1>
-              <p>${favorites[i].body}</p>
-          </div>
-          <footer class="comment-image">
-              <img src=assets/comment.svg alt='Add comment button'>
-              <h1>Comment</h1>
-          </footer>
-        </section>
-          `
-  }
-}
+// function renderFavorites() {
+//   cardGrid.innerHTML = ''
+//   for (var i = 0; i < favorites.length; i++) {
+//
+//     cardGrid.innerHTML += `
+//       <section class="idea-boxes" id=${favorites[i].id}>
+//           <header class="star-border" >
+//           <img id="active-star" class = 'active-star star' src= assets/star-active.svg alt="star-active">
+//             <img id = "delete-button" class = 'delete' src= assets/delete.svg alt="delete">
+//           </header>
+//           <div class='idea-content'>
+//               <h1 class="card-title">${favorites[i].title}</h1>
+//               <p>${favorites[i].body}</p>
+//           </div>
+//           <footer class="comment-image">
+//               <img src=assets/comment.svg alt='Add comment button'>
+//               <h1>Comment</h1>
+//           </footer>
+//         </section>
+//           `
+//   }
+// }
 
 function onPageLoad() {
+  // changeStarImages();
   showSavedCards();
 }
 
@@ -181,49 +206,27 @@ function showSavedCards() {
   }
 }
 //
-function changeStarImages() {
-  if (!storedIdeas.isStarred) {
-    star = 'assets/star.svg';
-  } else {
-    star = 'assets/star-active.svg';
-  }
-}
+// function changeStarImages() {
+//   if (!storedIdeas.isStarred) {
+//     var star = 'assets/star.svg';
+//     return star;
+//   } else {
+//     var star = 'assets/star-active.svg';
+//     return star;
+//   }
+// }
+
+// function createIdeaCard() {
+//   var retrievedIdea = localStorage.getItem("storedIdea");
+//   var storedIdeas = JSON.parse(retrievedIdea);
+//   renderCards(storedIdeas)
+// }
 
 function createIdeaCard() {
   var retrievedIdea = localStorage.getItem("storedIdea");
   var storedIdeas = JSON.parse(retrievedIdea);
-  renderCards(storedIdeas)
-}
-
-function createIdeaCard() {
-  var retrievedIdea = localStorage.getItem("storedIdea");
-  var storedIdeas = JSON.parse(retrievedIdea);
-  cardGrid.innerHTML += `
-    <section class="idea-boxes" id=${storedIdeas[storedIdeas.length - 1].id}>
-          <header class="star-border" >
-          <img id="active-star" class = 'active-star star hidden' src= assets/star-active.svg alt="star-active">
-          <img id = "star-button" class = 'star' src= assets/star.svg alt="star">
-          <img id = "delete-button" class = 'delete' src= assets/delete.svg alt="delete">
-          </header>
-          <div class='idea-content'>
-            <h1 class="card-title">${storedIdeas[storedIdeas.length - 1].title}</h1>
-            <p>${storedIdeas[storedIdeas.length - 1].body}</p>
-          </div>
-          <footer class="comment-image">
-            <img src=assets/comment.svg alt='Add comment button'>
-            <h1>Comment</h1>
-          </footer>
-        </section>
-        `
+  renderCards(storedIdeas);
 };
-
-
-function saveNewIdea() {
-  createNewIdea();
-  createIdeaCard();
-  buttonDisable();
-}
-
 
 function filterMyIdeas() {
   var searchCards = searchButtonInput.value.toLowerCase();
@@ -236,4 +239,10 @@ function filterMyIdeas() {
   }
 
   renderCards(matchedIdea);
+}
+
+function saveNewIdea() {
+  createNewIdea();
+  createIdeaCard();
+  buttonDisable();
 }
