@@ -216,12 +216,6 @@ function showSavedCards() {
 //   }
 // }
 
-// function createIdeaCard() {
-//   var retrievedIdea = localStorage.getItem("storedIdea");
-//   var storedIdeas = JSON.parse(retrievedIdea);
-//   renderCards(storedIdeas)
-// }
-
 function createIdeaCard() {
   var retrievedIdea = localStorage.getItem("storedIdea");
   var storedIdeas = JSON.parse(retrievedIdea);
