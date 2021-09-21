@@ -43,41 +43,37 @@ function deleteCard(event) {
   var deleteThisCard = event.target.closest('.idea-boxes')
   var parentId = Number(event.target.parentNode.parentNode.id);
   deleteThisCard.remove()
-  for(var i = 0; i < loggedIdeas.length; i++) {
+  for (var i = 0; i < loggedIdeas.length; i++) {
     if (loggedIdeas[i].id === parseInt(deleteThisCard.id)) {
       newIdea.deleteFromStorage(parentId);
       loggedIdeas.splice(i, 1);
-      }
     }
   }
-
+}
 
 function redStar(event) {
   var targetBox = event.target.closest('.idea-boxes')
   var activeStar = targetBox.querySelector('#active-star')
   var targetStar = targetBox.querySelector('#star-button')
-    for (var i = 0; i < loggedIdeas.length; i++) {
-      if (loggedIdeas[i].id === parseInt(targetBox.id)) {
-          loggedIdeas[i].isStarred = !loggedIdeas[i].isStarred;
-          toggleElement(targetStar);
-          toggleElement(activeStar);
-        }
-        if (loggedIdeas[i].isStarred === true && !loggedIdeas.includes(loggedIdeas[i])) {
-            loggedIdeas[i].updateIdea();
-        }
+  for (var i = 0; i < loggedIdeas.length; i++) {
+    if (loggedIdeas[i].id === parseInt(targetBox.id)) {
+      loggedIdeas[i].isStarred = !loggedIdeas[i].isStarred;
+      toggleElement(targetStar);
+      toggleElement(activeStar);
+    }
+    if (loggedIdeas[i].isStarred === true && !loggedIdeas.includes(loggedIdeas[i])) {
+      loggedIdeas[i].updateIdea();
+    }
   }
   newIdea.saveToStorage(loggedIdeas)
 }
 
-
-
 function unfavoriteCard() {
   for (var i = 0; i < favorites.length; i++) {
     if (favorites[i].isStarred === true)
-    favorites.splice(i, 1);
+      favorites.splice(i, 1);
   }
 }
-
 
 function createNewIdea() {
   var userTitle = titleInput.value;
@@ -88,12 +84,10 @@ function createNewIdea() {
   clearInput()
 }
 
-
 function clearInput() {
   titleInput.value = "";
   bodyInput.value = "";
 }
-
 
 function buttonDisable() {
   if (titleInput.value === '' && bodyInput.value === '') {
@@ -103,11 +97,9 @@ function buttonDisable() {
   }
 }
 
-
 function toggleElement(element) {
   element.classList.toggle('hidden')
 }
-
 
 function showFavorites() {
   var retrievedIdea = localStorage.getItem('storedIdea');
@@ -124,15 +116,13 @@ function showFavorites() {
   renderCards(starredIdeas)
 }
 
-
 function showAllCards() {
   renderCards(loggedIdeas);
   toggleElement(showAllButton);
   toggleElement(showStarredButton);
 }
 
-
-function renderCards (list) {
+function renderCards(list) {
   cardGrid.innerHTML = ''
   var star;
   for (var i = 0; i < list.length; i++) {
@@ -158,13 +148,12 @@ function renderCards (list) {
           </footer>
         </section>
           `
-        }
   }
+}
 
 function onPageLoad() {
   showSavedCards();
 }
-
 
 function showSavedCards() {
   var retrievedIdea = localStorage.getItem('storedIdea');
@@ -175,13 +164,11 @@ function showSavedCards() {
   }
 }
 
-
 function createIdeaCard() {
   var retrievedIdea = localStorage.getItem("storedIdea");
   var storedIdeas = JSON.parse(retrievedIdea);
   renderCards(storedIdeas);
 };
-
 
 function filterMyIdeas() {
   var searchCards = searchButtonInput.value.toLowerCase();
@@ -194,7 +181,6 @@ function filterMyIdeas() {
   }
   renderCards(matchedIdea);
 }
-
 
 function saveNewIdea() {
   createNewIdea();
