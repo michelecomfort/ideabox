@@ -1,9 +1,5 @@
 var loggedIdeas = [];
 var newIdea = new Idea();
-// var retrievedIdea = localStorage.getItem('storedIdea');
-// var storedIdeas = JSON.parse(retrievedIdea);
-var favorites = []
-// var star;
 
 
 // Query Selectors
@@ -23,6 +19,7 @@ var cardGrid = document.getElementById('card-grid');
 var inputFields = document.querySelectorAll('textarea');
 var starBorder = document.getElementById('star-border')
 var ideaBoxes = document.querySelector(".idea-boxes")
+saveButton.disabled = true;
 
 //Event loggedIdeaseners
 window.addEventListener('load', onPageLoad);
@@ -43,7 +40,6 @@ function littleButtons(event) {
 }
 
 function deleteCard(event) {
-  console.log(event.target.parentNode.parentNode.id, 'deletecardevent')
   var deleteThisCard = event.target.closest('.idea-boxes')
   var parentId = Number(event.target.parentNode.parentNode.id);
   deleteThisCard.remove()
@@ -51,7 +47,6 @@ function deleteCard(event) {
     if (loggedIdeas[i].id === parseInt(deleteThisCard.id)) {
       newIdea.deleteFromStorage(parentId);
       loggedIdeas.splice(i, 1);
-      deleteFromFavoritesArray();
       }
     }
   }
@@ -68,18 +63,13 @@ function redStar(event) {
           toggleElement(activeStar);
         }
         if (loggedIdeas[i].isStarred === true && !loggedIdeas.includes(loggedIdeas[i])) {
-            // favorites.push(loggedIdeas[i]);
             loggedIdeas[i].updateIdea();
         }
   }
   newIdea.saveToStorage(loggedIdeas)
 }
 
-function deleteFromFavoritesArray() {
-  for (var i = 0; i < favorites.length; i++) {
-    favorites.splice(i, 1);
-  }
-}
+
 
 function unfavoriteCard() {
   for (var i = 0; i < favorites.length; i++) {
@@ -87,6 +77,7 @@ function unfavoriteCard() {
     favorites.splice(i, 1);
   }
 }
+
 
 function createNewIdea() {
   var userTitle = titleInput.value;
@@ -97,12 +88,12 @@ function createNewIdea() {
   clearInput()
 }
 
+
 function clearInput() {
   titleInput.value = "";
   bodyInput.value = "";
 }
 
-saveButton.disabled = true;
 
 function buttonDisable() {
   if (titleInput.value === '' && bodyInput.value === '') {
@@ -117,16 +108,22 @@ function toggleElement(element) {
   element.classList.toggle('hidden')
 }
 
+
 function showFavorites() {
+  var retrievedIdea = localStorage.getItem('storedIdea');
+  var storedIdeas = JSON.parse(retrievedIdea);
+  loggedIdeas = storedIdeas
+  var starredIdeas = []
   for (var i = 0; i < loggedIdeas.length; i++) {
-    if (loggedIdeas[i].isStarred === true && !loggedIdeas.includes(loggedIdeas[i])) {
-      renderCards()
+    if (loggedIdeas[i].isStarred === true && !starredIdeas.includes(loggedIdeas[i])) {
+      starredIdeas.push(loggedIdeas[i])
     }
   }
-  // renderFavorites()
   toggleElement(showStarredButton)
   toggleElement(showAllButton)
+  renderCards(starredIdeas)
 }
+
 
 function showAllCards() {
   renderCards(loggedIdeas);
@@ -134,29 +131,26 @@ function showAllCards() {
   toggleElement(showStarredButton);
 }
 
-function renderCards (loggedIdeas) {
+
+function renderCards (list) {
   cardGrid.innerHTML = ''
   var star;
-  for (var i = 0; i < loggedIdeas.length; i++) {
-    if (!loggedIdeas[i].isStarred) {
+  for (var i = 0; i < list.length; i++) {
+    if (!list[i].isStarred) {
       star = 'assets/star.svg';
     } else {
       star = 'assets/star-active.svg';
     }
-  //   if(loggedIdeas === storedIdeas) {
-  //   loggedIdeas.push(loggedIdeas[i]);
-  // }
-
     cardGrid.innerHTML += `
-      <section class="idea-boxes" id=${loggedIdeas[i].id}>
+      <section class="idea-boxes" id=${list[i].id}>
           <header class="star-border" >
           <img id="active-star" class = 'active-star star hidden' src= assets/star-active.svg alt="star-active">
             <img id = "star-button" class = 'star' src=${star} alt="star">
             <img id = "delete-button" class = 'delete' src= assets/delete.svg alt="delete">
           </header>
           <div class='idea-content'>
-              <h1 class="card-title">${loggedIdeas[i].title}</h1>
-              <p>${loggedIdeas[i].body}</p>
+              <h1 class="card-title">${list[i].title}</h1>
+              <p>${list[i].body}</p>
           </div>
           <footer class="comment-image">
               <img src=assets/comment.svg alt='Add comment button'>
@@ -168,10 +162,9 @@ function renderCards (loggedIdeas) {
   }
 
 function onPageLoad() {
-
-  // changeStarImages();
   showSavedCards();
 }
+
 
 function showSavedCards() {
   var retrievedIdea = localStorage.getItem('storedIdea');
@@ -189,6 +182,7 @@ function createIdeaCard() {
   renderCards(storedIdeas);
 };
 
+
 function filterMyIdeas() {
   var searchCards = searchButtonInput.value.toLowerCase();
   cardGrid.innerHTML = '';
@@ -198,9 +192,9 @@ function filterMyIdeas() {
       matchedIdea.push(loggedIdeas[i]);
     }
   }
-
   renderCards(matchedIdea);
 }
+
 
 function saveNewIdea() {
   createNewIdea();
