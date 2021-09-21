@@ -6,9 +6,8 @@ class Idea {
     this.isStarred = false;
   }
 
-  saveToStorage(savedIdeas) {
-    var ideaToStore = savedIdeas;
-    var stringifyIdea = JSON.stringify(ideaToStore);
+  saveToStorage(loggedIdeas) {
+    var stringifyIdea = JSON.stringify(loggedIdeas);
     localStorage.setItem("storedIdea", stringifyIdea);
   }
 

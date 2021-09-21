@@ -1,9 +1,5 @@
 var loggedIdeas = [];
 var newIdea = new Idea();
-var retrievedIdea = localStorage.getItem('storedIdea');
-var storedIdeas = JSON.parse(retrievedIdea);
-var favorites = []
-// var star;
 
 
 // Query Selectors
@@ -23,8 +19,9 @@ var cardGrid = document.getElementById('card-grid');
 var inputFields = document.querySelectorAll('textarea');
 var starBorder = document.getElementById('star-border')
 var ideaBoxes = document.querySelector(".idea-boxes")
+saveButton.disabled = true;
 
-//Event Listeners
+//Event loggedIdeaseners
 window.addEventListener('load', onPageLoad);
 titleInput.addEventListener('keydown', buttonDisable);
 bodyInput.addEventListener('keydown', buttonDisable);
@@ -43,49 +40,38 @@ function littleButtons(event) {
 }
 
 function deleteCard(event) {
-  console.log(event.target.parentNode.parentNode.id, 'deletecardevent')
   var deleteThisCard = event.target.closest('.idea-boxes')
   var parentId = Number(event.target.parentNode.parentNode.id);
   deleteThisCard.remove()
-  for(var i = 0; i < loggedIdeas.length; i++) {
+  for (var i = 0; i < loggedIdeas.length; i++) {
     if (loggedIdeas[i].id === parseInt(deleteThisCard.id)) {
       newIdea.deleteFromStorage(parentId);
       loggedIdeas.splice(i, 1);
-      deleteFromFavoritesArray();
-      }
     }
   }
-
+}
 
 function redStar(event) {
   var targetBox = event.target.closest('.idea-boxes')
   var activeStar = targetBox.querySelector('#active-star')
   var targetStar = targetBox.querySelector('#star-button')
-    for (var i = 0; i < loggedIdeas.length; i++) {
-      if (loggedIdeas[i].id === parseInt(targetBox.id)) {
-          loggedIdeas[i].isStarred = !loggedIdeas[i].isStarred;
-          toggleElement(targetStar);
-          toggleElement(activeStar);
-        }
-        if (loggedIdeas[i].isStarred === true && !favorites.includes(loggedIdeas[i])) {
-            favorites.push(loggedIdeas[i]);
-            newIdea.updateIdea();
-        }
-        newIdea.saveToStorage(loggedIdeas)
+  for (var i = 0; i < loggedIdeas.length; i++) {
+    if (loggedIdeas[i].id === parseInt(targetBox.id)) {
+      loggedIdeas[i].isStarred = !loggedIdeas[i].isStarred;
+      toggleElement(targetStar);
+      toggleElement(activeStar);
+    }
+    if (loggedIdeas[i].isStarred === true && !loggedIdeas.includes(loggedIdeas[i])) {
+      loggedIdeas[i].updateIdea();
+    }
   }
-}
-
-function deleteFromFavoritesArray() {
-  for (var i = 0; i < favorites.length; i++) {
-    favorites.splice(i, 1);
-  }
+  newIdea.saveToStorage(loggedIdeas)
 }
 
 function unfavoriteCard() {
   for (var i = 0; i < favorites.length; i++) {
     if (favorites[i].isStarred === true)
-    favorites.splice(i, 1);
-
+      favorites.splice(i, 1);
   }
 }
 
@@ -103,8 +89,6 @@ function clearInput() {
   bodyInput.value = "";
 }
 
-saveButton.disabled = true;
-
 function buttonDisable() {
   if (titleInput.value === '' && bodyInput.value === '') {
     saveButton.disabled = true;
@@ -113,22 +97,23 @@ function buttonDisable() {
   }
 }
 
-
 function toggleElement(element) {
   element.classList.toggle('hidden')
 }
 
 function showFavorites() {
+  var retrievedIdea = localStorage.getItem('storedIdea');
+  var storedIdeas = JSON.parse(retrievedIdea);
+  loggedIdeas = storedIdeas
+  var starredIdeas = []
   for (var i = 0; i < loggedIdeas.length; i++) {
-    if (loggedIdeas[i].isStarred === true) {
-      if (!favorites.includes(loggedIdeas[i])) {
-        favorites.push(loggedIdeas[i])
-      }
+    if (loggedIdeas[i].isStarred === true && !starredIdeas.includes(loggedIdeas[i])) {
+      starredIdeas.push(loggedIdeas[i])
     }
   }
-  renderFavorites()
   toggleElement(showStarredButton)
   toggleElement(showAllButton)
+  renderCards(starredIdeas)
 }
 
 function showAllCards() {
@@ -137,21 +122,15 @@ function showAllCards() {
   toggleElement(showStarredButton);
 }
 
-function renderCards (list) {
+function renderCards(list) {
   cardGrid.innerHTML = ''
   var star;
-  if (!storedIdeas.isStarred) {
-    star = 'assets/star.svg';
-  } else {
-    star = 'assets/star-active.svg';
-  }
   for (var i = 0; i < list.length; i++) {
-    if(list === storedIdeas) {
-    loggedIdeas.push(list[i]);
-  }
-  //   if (list[i].isStarred) {
-  //   favorites.push(list[i]);
-  // }
+    if (!list[i].isStarred) {
+      star = 'assets/star.svg';
+    } else {
+      star = 'assets/star-active.svg';
+    }
     cardGrid.innerHTML += `
       <section class="idea-boxes" id=${list[i].id}>
           <header class="star-border" >
@@ -172,49 +151,18 @@ function renderCards (list) {
   }
 }
 
-// function renderFavorites() {
-//   cardGrid.innerHTML = ''
-//   for (var i = 0; i < favorites.length; i++) {
-//
-//     cardGrid.innerHTML += `
-//       <section class="idea-boxes" id=${favorites[i].id}>
-//           <header class="star-border" >
-//           <img id="active-star" class = 'active-star star' src= assets/star-active.svg alt="star-active">
-//             <img id = "delete-button" class = 'delete' src= assets/delete.svg alt="delete">
-//           </header>
-//           <div class='idea-content'>
-//               <h1 class="card-title">${favorites[i].title}</h1>
-//               <p>${favorites[i].body}</p>
-//           </div>
-//           <footer class="comment-image">
-//               <img src=assets/comment.svg alt='Add comment button'>
-//               <h1>Comment</h1>
-//           </footer>
-//         </section>
-//           `
-//   }
-// }
-
 function onPageLoad() {
-  // changeStarImages();
   showSavedCards();
 }
 
 function showSavedCards() {
+  var retrievedIdea = localStorage.getItem('storedIdea');
+  var storedIdeas = JSON.parse(retrievedIdea);
   if (storedIdeas) {
-    renderCards(storedIdeas);
+    loggedIdeas = storedIdeas
+    renderCards(loggedIdeas);
   }
 }
-//
-// function changeStarImages() {
-//   if (!storedIdeas.isStarred) {
-//     var star = 'assets/star.svg';
-//     return star;
-//   } else {
-//     var star = 'assets/star-active.svg';
-//     return star;
-//   }
-// }
 
 function createIdeaCard() {
   var retrievedIdea = localStorage.getItem("storedIdea");
@@ -231,7 +179,6 @@ function filterMyIdeas() {
       matchedIdea.push(loggedIdeas[i]);
     }
   }
-
   renderCards(matchedIdea);
 }
 
