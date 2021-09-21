@@ -4,21 +4,21 @@ var newIdea = new Idea();
 
 // Query Selectors
 
-var saveButton = document.getElementById('save-button');
-var deleteButton = document.getElementById('delete-button');
-var starButton = document.querySelector('.star');
-var activeStarButton = document.querySelector('.active-star');
-var activeDeleteButton = document.getElementById('active-delete');
-var showStarredButton = document.getElementById('ideas-starred');
-var showAllButton = document.getElementById('show-all');
-var commentButton = document.querySelector('.comment-button');
-var searchButtonInput = document.getElementById('input-search');
-var titleInput = document.getElementById('title-input');
-var bodyInput = document.getElementById('body-input');
-var cardGrid = document.getElementById('card-grid');
+var saveButton = document.getElementById('saveButton');
+var deleteButton = document.getElementById('deleteButton');
+// var starButton = document.querySelector('.star');
+// var activeStarButton = document.querySelector('.active-star');
+// var activeDeleteButton = document.getElementById('active-delete');
+var showStarredButton = document.getElementById('showStarredIdeas');
+var showAllButton = document.getElementById('showAllIdeas');
+// var commentButton = document.querySelector('.comment-button');
+var searchButtonInput = document.getElementById('searchInput');
+var titleInput = document.getElementById('titleInput');
+var bodyInput = document.getElementById('bodyInput');
+var cardGrid = document.getElementById('cardGrid');
 var inputFields = document.querySelectorAll('textarea');
-var starBorder = document.getElementById('star-border')
-var ideaBoxes = document.querySelector(".idea-boxes")
+var starBorder = document.getElementById('starBorder')
+var ideaCards = document.querySelector(".idea-cards")
 saveButton.disabled = true;
 
 //Event loggedIdeaseners
@@ -40,7 +40,7 @@ function littleButtons(event) {
 }
 
 function deleteCard(event) {
-  var deleteThisCard = event.target.closest('.idea-boxes')
+  var deleteThisCard = event.target.closest('.idea-cards')
   var parentId = Number(event.target.parentNode.parentNode.id);
   deleteThisCard.remove()
   for (var i = 0; i < loggedIdeas.length; i++) {
@@ -52,7 +52,7 @@ function deleteCard(event) {
 }
 
 function redStar(event) {
-  var targetBox = event.target.closest('.idea-boxes')
+  var targetBox = event.target.closest('.idea-cards')
   var activeStar = targetBox.querySelector('#active-star')
   var targetStar = targetBox.querySelector('#star-button')
   for (var i = 0; i < loggedIdeas.length; i++) {
@@ -68,12 +68,12 @@ function redStar(event) {
   newIdea.saveToStorage(loggedIdeas)
 }
 
-function unfavoriteCard() {
-  for (var i = 0; i < favorites.length; i++) {
-    if (favorites[i].isStarred === true)
-      favorites.splice(i, 1);
-  }
-}
+// function unfavoriteCard() {
+//   for (var i = 0; i < favorites.length; i++) {
+//     if (favorites[i].isStarred === true)
+//       favorites.splice(i, 1);
+//   }
+// }
 
 function createNewIdea() {
   var userTitle = titleInput.value;
@@ -132,11 +132,11 @@ function renderCards(list) {
       star = 'assets/star-active.svg';
     }
     cardGrid.innerHTML += `
-      <section class="idea-boxes" id=${list[i].id}>
-          <header class="star-border" >
+      <section class="idea-cards" id=${list[i].id}>
+          <header id='starBorder' class="star-border">
           <img id="active-star" class = 'active-star star hidden' src= assets/star-active.svg alt="star-active">
             <img id = "star-button" class = 'star' src=${star} alt="star">
-            <img id = "delete-button" class = 'delete' src= assets/delete.svg alt="delete">
+            <img id = "deleteButton" class = 'delete' src= assets/delete.svg alt="delete">
           </header>
           <div class='idea-content'>
               <h1 class="card-title">${list[i].title}</h1>
