@@ -8,13 +8,6 @@ body {
   font-family: 'Open Sans', 'Light';
 }
 
-h2 {
-  color: #BFBFDD;
-  font-size: 16px;
-  padding-left: 12px;
-  margin: 10% 25% 15% 0;
-}
-
 main {
   display: flex;
 }
@@ -26,19 +19,27 @@ h1 {
   padding: 5px;
 }
 
-img {
-  height: 25px;
-  width: 25px;
-  cursor: pointer;
+h2 {
+  color: #BFBFDD;
+  font-size: 16px;
+  margin: 10% 25% 15% 0;
+  padding-left: 12px;
 }
 
 p {
-  padding: 0 8% 3% 8%;
   font-weight: lighter;
   margin: 0;
+  padding: 0 8% 5% 8%;
   text-align: left;
-  padding-bottom: 5%;
 }
+
+img {
+  cursor: pointer;
+  height: 25px;
+  width: 25px;
+}
+
+/* ------- Left Side Bar --------*/
 
 h1,
 .side-bar > h1,
@@ -48,57 +49,53 @@ h1,
   color: #E9E9F3;
 }
 
-
-
 .sidebar {
+  align-items: flex-start;
   background-color: #1F1F3D;
   display: flex;
-  align-items: flex-start;
   flex-direction: column;
   width: 20vw;
 }
 
 .line {
   border-bottom: 2px solid #5356A4;
-  width: 100%
+  width: 100%;
 }
 
 .show-starred-ideas,
 .show-all-ideas-button {
   background-color: #5356A4;
+  cursor: pointer;
   font-weight: bold;
   height: 5%;
   margin: 0 10px;
-  cursor: pointer;
 }
 
 .sidebar > .show-starred-ideas,
 .show-all-ideas-button {
+  border: 0;
   font-size: 18px;
-  margin: 0 auto;
-  width: 90%;
-  white-space: nowrap;
+  margin: 0 auto 10%;
   overflow: hidden;
-  margin-bottom: 10%;
+  white-space: nowrap;
+  width: 90%;
 }
 
 .sidebar > h1 {
   font-family: inherit;
+  font-size: 24px;
   font-weight: 600;
   margin: 0;
   padding: 5%;
-  font-size: 24px;
 }
 
-.idea-content {
-  height: 20vh;
-}
+/*------- Create Cards Input Section ---------*/
 
 .right-side {
   background-color: #EAEAF4;
   display: flex;
   flex-direction: column;
-  height:100vh;
+  height: 100vh;
   width: 80vw;
 }
 
@@ -117,73 +114,70 @@ h1,
 }
 
 .input-boxes {
-  background-color: #A9AAD2;
-  display: flex;
-  width: 80vw;
   align-items: center;
-  justify-content: center;
+  background-color: #A9AAD2;
+  border: 1px solid #EAEAFA;
+  display: flex;
   flex-direction: column;
   height: 25em;
-  border: 1px solid #EAEAFA;
+  justify-content: center;
+  width: 80vw;
 }
 
 .label {
   color: #1F1F3D;
   font-size: 15px;
   font-weight: bold;
-  margin-right: 36%;
-  margin-bottom: 0.5%;
+  margin: 0 36% 0.5% 0;
 }
 
 .save-button {
   background-color: #1F1F3D;
   border: 1px solid #5356A4;
+  border-radius: 3px;
+  cursor: pointer;
   font-size: 20px;
   margin: 3%;
   padding: 1.5%;
-  width: 40%;
-  cursor: pointer;
+  width: 41%;
+}
+
+.save-button:disabled {
+  background-color: #cccccc;
+  border: 1px solid #999999;
+  color: #666666;
+  cursor: not-allowed;
 }
 
 .search-box {
-  display: flex;
-  justify-content: center;
   align-items: center;
+  display: flex;
+  height: 9%;
+  justify-content: center;
+  margin: 0 0 3% 0;
   width: 87%;
-  height: 10%;
-  margin: 3% 0;
 }
 
 .search-input {
   border: 2px solid #5356A4;
-  border-radius: 2px;
-  width: 40%;
-  height: 56px;
+  border-radius: 3px;
   font-size: 110%;
+  height: 40px;
+  width: 41%;
 }
 
+.search-icon {
+  background-color: #353667;
+  border-radius: 4px;
+  height: 29px;
+  padding: 1%;
+}
+
+/*---------- Display Card Section ------------*/
 .idea-cards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   padding: 1.5%;
-}
-
-.idea-boxes {
-  background-color: white;
-  border: 2px solid;
-  display: flex;
-  flex-direction: column;
-  width:60%;
-  margin: 3% auto;
-}
-
-.card-title {
-  color: #1F1F3D;
-  font-size: 110%;
-  text-align: left;
-  font-weight: 700;
-  padding: 8% 8% 3% 8%;
-  margin-bottom: 0;
 }
 
 .star-border {
@@ -192,28 +186,37 @@ h1,
   justify-content: space-between;
 }
 
+.idea-content {
+  height: 20vh;
+}
+
+.idea-cards {
+  background-color: white;
+  border: 2px solid;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 3% auto;
+  width: 60%;
+}
+
+.card-title {
+  color: #1F1F3D;
+  font-size: 110%;
+  font-weight: 700;
+  padding: 8% 8% 3%;
+  text-align: left;
+}
+
 .comment-image {
+  align-items: center;
   background-color: #5356A4;
   display: flex;
   flex-direction: row;
-  align-items: center;
   margin-top: 2%;
-}
-
-.search-icon {
-  background-color: #353667;
-  padding: 2%;
-  cursor: pointer;
-  margin: 3% 0;
 }
 
 .hidden {
   display: none;
-}
-
-.save-button:disabled {
-  border: 1px solid #999999;
-  background-color: #cccccc;
-  color: #666666;
-  cursor: not-allowed;
 }
