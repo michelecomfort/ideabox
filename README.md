@@ -27,9 +27,17 @@ Do you have a really great idea but you have difficulty keeping track of it in  
 
 - Create an idea card by filling out the title and body input.
 - Click the save button to store your new idea.
+
+![firstcard](https://user-images.githubusercontent.com/78453792/134266981-abd472db-b393-4f4b-b025-abed94ccb5c5.gif)
+
 - Favorite your best ones, or delete the ones that don't inspire you.
-- Filter through your saved ideas.
 - View your saved ideas all at once.
+
+![favoritedeleteshow](https://user-images.githubusercontent.com/78453792/134267028-b3004fb6-ef79-4ab3-b91d-8474cf835b69.gif)
+
+- Filter through your saved ideas.
+
+![searchbar ](https://user-images.githubusercontent.com/78453792/134267033-8df026eb-1e6b-4c74-a261-a94d6a5c6239.gif)
 
 ## GitHub Pages
 
