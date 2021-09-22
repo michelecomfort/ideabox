@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
   <head>
-    <link rel="stylesheet" href="styles.css">
+    <link rel='stylesheet' href='styles.css'>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
     <title>IdeaBox</title>
   </head>
   <body>
     <main>
-      <aside class="sidebar">
+      <aside class='sidebar'>
         <h1>IdeaBox</h1>
-        <div class="line"></div>
+        <div class='line'></div>
         <h2>Filter Starred Ideas</h2>
-        <button id="showStarredIdeas" class="show-starred-ideas">Show Starred Ideas</button>
-        <button id="showAllIdeas" class="show-all-ideas-button hidden">Show All Ideas</button>
-        <div class="line"></div>
+        <button id='showStarredIdeas' class='show-starred-ideas'>Show Starred Ideas</button>
+        <button id='showAllIdeas' class='show-all-ideas-button hidden'>Show All Ideas</button>
+        <div class='line'></div>
       </aside>
-      <section class="right-side">
+      <section class='right-side'>
         <section class='input-boxes'>
-          <label for ='titleInput' class="label">Title</label>
+          <label for ='titleInput' class='label'>Title</label>
           <textarea id='titleInput' class='input-title'></textarea>
-          <label for = 'bodyInput' class="label">Body</label>
+          <label for = 'bodyInput' class='label'>Body</label>
           <textarea id='bodyInput' class='input-body' type='text'></textarea>
           <button id='saveButton' class='save-button' type='text'>Save</button>
           <section class='search-box'>
@@ -27,12 +27,11 @@
             <input id='searchInput' class='search-input' placeholder='Search ideas'></input>
           </section>
         </section>
-        <section class="idea-cards-grid" id='cardGrid'>
+        <section class='idea-cards-grid' id='cardGrid'>
         <!-- Dynamic cards will appear here -->
-        </section>
-      </main>
-      <script type="text/javascript" src="idea.js"></script>
-      <script type="text/javascript" src="main.js"></script>
+      </section>
+    </main>
+    <script type='text/javascript' src='idea.js'></script>
+    <script type='text/javascript' src='main.js'></script>
   </body>
-
 </html>
